@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-controls">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="export-dropdown">
+                <button class="export-btn" id="exportBtn">
+                    <i class="fas fa-download"></i>
+                </button>
+                <div class="export-menu" id="exportMenu">
+                    <button class="export-option" data-format="image">
+                        <i class="fas fa-image"></i>
+                        <span>Export as Image</span>
+                    </button>
+                    <button class="export-option" data-format="json">
+                        <i class="fas fa-file-code"></i>
+                        <span>Export as JSON</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-card">
+            <div class="bible-verse">
+                <p>"Let the wise listen and add to their learning, and let the discerning get guidance."</p>
+                <span>- Proverbs 1:5</span>
+            </div>
+            <div class="timer-header">
+                <h1>Pomodoro Timer</h1>
+                <p>Study at your own pace</p>
+            </div>
+
+            <div class="timer-display">
+                <div class="time-display" id="timeDisplay">00:00:00</div>
+                <div class="mode-indicator" id="modeIndicator">Ready to Start</div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0%</div>
+                </div>
+            </div>
+
+            <div class="timer-controls">
+                <button class="control-btn primary" id="startBtn">
+                    <i class="fas fa-play"></i>
+                    <span>Start</span>
+                </button>
+                
+                <button class="control-btn secondary" id="breakBtn" disabled>
+                    <i class="fas fa-pause"></i>
+                    <span>Break</span>
+                </button>
+                
+                <button class="control-btn tertiary" id="resetBtn">
+                    <i class="fas fa-arrow-rotate-left"></i>
+                    <span>Reset</span>
+                </button>
+            </div>
+
+            <div class="session-info">
+                <div class="info-item">
+                    <span class="info-label">Current Session</span>
+                    <span class="info-value" id="currentSession">0 min</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Today's Total</span>
+                    <span class="info-value" id="todayTotal">0 min</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Study Goals Card -->
+        <div class="goals-card">
+            <h3><i class="fas fa-target"></i> Study Goals</h3>
+            <div class="goal-input">
+                <input type="number" id="dailyGoal" placeholder="Set daily goal (minutes)" min="1" max="1440">
+                <button class="set-goal-btn" id="setGoalBtn">Set Goal</button>
+            </div>
+            <div class="goal-progress">
+                <div class="goal-text">
+                    <span id="goalText">No goal set</span>
+                    <span id="goalProgress">0 / 0 min</span>
+                </div>
+                <div class="goal-bar">
+                    <div class="goal-fill" id="goalFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-card">
+            <h3>Today's Progress</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="studySessions">0</div>
+                    <div class="stat-label">Sessions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalStudyTime">0</div>
+                    <div class="stat-label">Study (min)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalBreakTime">0</div>
+                    <div class="stat-label">Break (min)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden canvas for image generation -->
+    <canvas id="progressCanvas" style="display: none;"></canvas>
+
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notificationText">Session started</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
